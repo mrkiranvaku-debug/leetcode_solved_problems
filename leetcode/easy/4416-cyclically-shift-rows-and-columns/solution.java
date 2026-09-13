@@ -3,8 +3,7 @@ class Solution {
         int[][] temp = new int[n][n];
         int[][] res = new int[n][n];
 
-        // Step 1: Cyclically left shift each row
-        // Element at (i, j) moves to column (j - rowShift[i] + n) % n
+    
         for (int i = 0; i < n; i++) {
             int shift = rowShift[i];
             for (int j = 0; j < n; j++) {
@@ -13,8 +12,7 @@ class Solution {
             }
         }
 
-        // Step 2: Cyclically upward shift each column
-        // Element at (i, j) moves to row (i - colShift[j] + n) % n
+        
         for (int j = 0; j < n; j++) {
             int shift = colShift[j];
             for (int i = 0; i < n; i++) {
