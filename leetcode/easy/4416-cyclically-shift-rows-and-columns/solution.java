@@ -1,18 +1,23 @@
 class Solution {
     public int[][] cyclicShift(int n, int[][] grid, int[] rowShift, int[] colShift) {
+        int[][] temp = new int[n][n];
         int[][] res = new int[n][n];
 
+    
         for (int i = 0; i < n; i++) {
-            // intermediate column after row shift
-            int midCol = (i - rowShift[i] % n + n) % n; 
-            
+            int shift = rowShift[i];
             for (int j = 0; j < n; j++) {
-                // final column position after applying shift to midCol
-                int finalCol = (j - rowShift[i] % n + n) % n;
-                // final row position after applying shift to column finalCol
-                int finalRow = (i - colShift[finalCol] % n + n) % n;
+                int newCol = (j - shift % n + n) % n;
+                temp[i][newCol] = grid[i][j];
+            }
+        }
 
-                res[finalRow][finalCol] = grid[i][j];
+        
+        for (int j = 0; j < n; j++) {
+            int shift = colShift[j];
+            for (int i = 0; i < n; i++) {
+                int newRow = (i - shift % n + n) % n;
+                res[newRow][j] = temp[i][j];
             }
         }
 
